@@ -11,16 +11,23 @@ class Saspro < Formula
   def install
     python = Formula["python@3.12"].opt_bin/"python3.12"
 
-    # Create the venv first
+    # Create the venv first suppressing CLT warning
     system "/bin/bash", "-c",
       "#{python} -m venv #{libexec} 2>/dev/null"
 
-    # Now pip install into it suppressing CLT warning via stderr redirect
+    # pip install suppressing CLT warning
     pip = libexec/"bin/python3"
     system "/bin/bash", "-c",
       "#{pip} -m pip install --quiet --no-warn-script-location setiastrosuitepro 2>/dev/null"
 
-    bin.install_symlink libexec/"bin/setiastrosuitepro"
+    # Wrapper instead of symlink to set Numba threading env vars
+    (bin/"setiastrosuitepro").write <<~EOS
+      #!/bin/bash
+      export NUMBA_THREADING_LAYER=omp
+      export NUMBA_NUM_THREADS=4
+      exec "#{libexec}/bin/setiastrosuitepro" "$@"
+    EOS
+    chmod 0755, bin/"setiastrosuitepro"
   end
 
   test do
