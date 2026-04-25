@@ -9,12 +9,16 @@ class Saspro < Formula
   depends_on "python@3.12"
 
   def install
-    # Redirect stderr to suppress CLT version warning that Homebrew
-    # incorrectly treats as fatal on macOS 15 with Xcode 26 naming
+    python = Formula["python@3.12"].opt_bin/"python3.12"
+
+    # Create the venv first
+    system "/bin/bash", "-c",
+      "#{python} -m venv #{libexec} 2>/dev/null"
+
+    # Now pip install into it suppressing CLT warning via stderr redirect
     pip = libexec/"bin/python3"
-    safe_system "/bin/bash", "-c",
-      "#{pip} -m pip install --quiet --no-warn-script-location setiastrosuitepro 2>/dev/null || " \
-      "#{pip} -m pip install --quiet --no-warn-script-location setiastrosuitepro"
+    system "/bin/bash", "-c",
+      "#{pip} -m pip install --quiet --no-warn-script-location setiastrosuitepro 2>/dev/null"
 
     bin.install_symlink libexec/"bin/setiastrosuitepro"
   end
