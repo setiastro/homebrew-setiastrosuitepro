@@ -1,6 +1,5 @@
 class Saspro < Formula
   include Language::Python::Virtualenv
-
   desc "SetiAstro Suite Pro astrophotography image processing platform"
   homepage "https://setiastro.com"
   url "https://github.com/setiastro/setiastrosuitepro/archive/refs/tags/V1.15.4.tar.gz"
@@ -10,10 +9,10 @@ class Saspro < Formula
   depends_on "python@3.12"
 
   def install
-    system libexec/"bin/python3", "-m", "pip", "install", 
-           "--upgrade", "pip"
     system libexec/"bin/python3", "-m", "pip", "install",
-           "setiastrosuitepro[all]"
+           "--upgrade", "--quiet", "pip"
+    system libexec/"bin/python3", "-m", "pip", "install",
+           "--quiet", "--no-warn-script-location", "setiastrosuitepro"
     bin.install_symlink libexec/"bin/setiastrosuitepro"
   end
 
