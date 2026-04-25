@@ -1,4 +1,6 @@
 class Saspro < Formula
+  include Language::Python::Virtualenv
+
   desc "SetiAstro Suite Pro astrophotography image processing platform"
   homepage "https://setiastro.com"
   url "https://github.com/setiastro/setiastrosuitepro/archive/refs/tags/V1.15.4.tar.gz"
