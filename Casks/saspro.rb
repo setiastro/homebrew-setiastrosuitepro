@@ -17,11 +17,11 @@ cask "saspro" do
 
   depends_on macos: ">= :ventura"
 
-  app "SASpro.app"
+  app "SetiAstroSuitePro.app"
 
   zap trash: [
-    "~/Library/Application Support/SASpro",
-    "~/Library/Preferences/com.setiastro.saspro.plist",
-    "~/Library/Caches/SASpro",
+    "~/Library/Application Support/SetiAstroSuitePro",
+    "~/Library/Preferences/com.setiastro.setiastrosuitepro.plist",
+    "~/Library/Caches/SetiAstroSuitePro",
   ]
 end
