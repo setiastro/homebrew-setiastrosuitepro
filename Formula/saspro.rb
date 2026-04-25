@@ -10,13 +10,17 @@ class Saspro < Formula
   depends_on "tbb"
 
   def install
-    system libexec/"bin/python3", "-m", "pip", "install",
-           "--quiet", "--no-warn-script-location", "setiastrosuitepro"
+    # Suppress CLT version check that Homebrew treats as fatal
+    ENV["HOMEBREW_NO_INSTALL_CLEANUP"] = "1"
+    ENV["HOMEBREW_NO_ENV_HINTS"] = "1"
 
-    # Remove the auto-generated entry point so we can replace with wrapper
+    system libexec/"bin/python3", "-m", "pip", "install",
+           "--quiet", "--no-warn-script-location",
+           "--no-build-isolation",
+           "setiastrosuitepro"
+
     rm_f bin/"setiastrosuitepro"
 
-    # Wrapper script that sets safe Numba threading before launch
     (bin/"setiastrosuitepro").write <<~EOS
       #!/bin/bash
       export NUMBA_THREADING_LAYER=omp
