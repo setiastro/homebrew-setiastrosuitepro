@@ -11,6 +11,7 @@ class Saspro < Formula
 
   def install
     virtualenv_install_with_resources
+    bin.install_symlink libexec/"bin/setiastrosuitepro"
   end
 
   test do
