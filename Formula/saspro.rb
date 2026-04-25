@@ -10,7 +10,10 @@ class Saspro < Formula
   depends_on "python@3.12"
 
   def install
-    virtualenv_install_with_resources
+    system libexec/"bin/python3", "-m", "pip", "install", 
+           "--upgrade", "pip"
+    system libexec/"bin/python3", "-m", "pip", "install",
+           "setiastrosuitepro[all]"
     bin.install_symlink libexec/"bin/setiastrosuitepro"
   end
 
