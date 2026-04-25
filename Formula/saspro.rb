@@ -8,6 +8,10 @@ class Saspro < Formula
 
   depends_on "python@3.12"
 
+  # imagecodecs bundles libgif with paths that cannot be rewritten by
+  # Homebrew's post-install linkage fixer — this is harmless at runtime
+  pour_bottle? only_if: :default_prefix
+
   def install
     system libexec/"bin/python3", "-m", "pip", "install",
            "--upgrade", "--quiet", "pip"
