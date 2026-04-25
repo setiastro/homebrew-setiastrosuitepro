@@ -15,7 +15,7 @@ cask "saspro" do
   desc "SetiAstro Suite Pro astrophotography image processing platform"
   homepage "https://setiastro.com"
 
-  depends_on macos: ">= :ventura"
+  depends_on macos: ">= :big_sur"
 
   app "SetiAstroSuitePro.app"
 
