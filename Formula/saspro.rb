@@ -7,17 +7,22 @@ class Saspro < Formula
   license "GPL-3.0-only"
 
   depends_on "python@3.12"
-
-  # imagecodecs bundles libgif with paths that cannot be rewritten by
-  # Homebrew's post-install linkage fixer — this is harmless at runtime
-  pour_bottle? only_if: :default_prefix
+  depends_on "tbb"
 
   def install
     system libexec/"bin/python3", "-m", "pip", "install",
            "--upgrade", "--quiet", "pip"
     system libexec/"bin/python3", "-m", "pip", "install",
            "--quiet", "--no-warn-script-location", "setiastrosuitepro"
-    bin.install_symlink libexec/"bin/setiastrosuitepro"
+
+    # Wrapper script that sets safe Numba threading before launch
+    (bin/"setiastrosuitepro").write <<~EOS
+      #!/bin/bash
+      export NUMBA_THREADING_LAYER=omp
+      export NUMBA_NUM_THREADS=1
+      exec "#{libexec}/bin/setiastrosuitepro" "$@"
+    EOS
+    chmod 0755, bin/"setiastrosuitepro"
   end
 
   test do
