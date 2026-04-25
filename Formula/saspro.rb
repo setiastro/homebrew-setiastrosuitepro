@@ -10,13 +10,18 @@ class Saspro < Formula
   depends_on "tbb"
 
   def install
-    # Suppress CLT version check that Homebrew treats as fatal
     ENV["HOMEBREW_NO_INSTALL_CLEANUP"] = "1"
     ENV["HOMEBREW_NO_ENV_HINTS"] = "1"
+    ENV["HOMEBREW_NO_AUTO_UPDATE"] = "1"
+    ENV["PYTHONDONTWRITEBYTECODE"] = "1"
 
-    system libexec/"bin/python3", "-m", "pip", "install",
-           "--quiet", "--no-warn-script-location",
+    # Use pipe to suppress CLT warnings being treated as errors
+    pip = libexec/"bin/python3"
+    system pip, "-m", "pip", "install",
+           "--quiet",
+           "--no-warn-script-location",
            "--no-build-isolation",
+           "--disable-pip-version-check",
            "setiastrosuitepro"
 
     rm_f bin/"setiastrosuitepro"
