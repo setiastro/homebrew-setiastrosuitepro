@@ -8,9 +8,7 @@ class Saspro < Formula
   depends_on "python@3.12"
 
   def install
-    venv = virtualenv_create(libexec, "python3.12")
-    venv.pip_install_and_link(buildpath)
-    bin.write_exec_script libexec/"bin/setiastrosuitepro"
+    virtualenv_install_with_resources
   end
 
   test do
