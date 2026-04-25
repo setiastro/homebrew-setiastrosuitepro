@@ -11,9 +11,10 @@ class Saspro < Formula
 
   def install
     system libexec/"bin/python3", "-m", "pip", "install",
-           "--upgrade", "--quiet", "pip"
-    system libexec/"bin/python3", "-m", "pip", "install",
            "--quiet", "--no-warn-script-location", "setiastrosuitepro"
+
+    # Remove the auto-generated entry point so we can replace with wrapper
+    rm_f bin/"setiastrosuitepro"
 
     # Wrapper script that sets safe Numba threading before launch
     (bin/"setiastrosuitepro").write <<~EOS
