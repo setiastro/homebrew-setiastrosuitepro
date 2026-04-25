@@ -9,8 +9,13 @@ class Saspro < Formula
   depends_on "python@3.12"
 
   def install
-    system libexec/"bin/python3", "-m", "pip", "install",
-           "--quiet", "--no-warn-script-location", "setiastrosuitepro"
+    # Redirect stderr to suppress CLT version warning that Homebrew
+    # incorrectly treats as fatal on macOS 15 with Xcode 26 naming
+    pip = libexec/"bin/python3"
+    safe_system "/bin/bash", "-c",
+      "#{pip} -m pip install --quiet --no-warn-script-location setiastrosuitepro 2>/dev/null || " \
+      "#{pip} -m pip install --quiet --no-warn-script-location setiastrosuitepro"
+
     bin.install_symlink libexec/"bin/setiastrosuitepro"
   end
 
