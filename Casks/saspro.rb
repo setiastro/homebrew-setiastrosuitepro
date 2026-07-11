@@ -8,7 +8,7 @@ cask "saspro" do
 
   on_intel do
     url "https://github.com/setiastro/setiastrosuitepro/releases/download/V#{version}/SetiAstroSuitePro_macOS_Intel.dmg"
-    sha256 "393649374107451dc0e7c1969476e3d19ad2a432b23518c0fd14373b2e01e4c6"  # paste full hash here
+    sha256 "52b6324ef3115788720272cbaed017df84cd8e6ea884d7b7db3e184097574d68"  # paste full hash here
   end
 
   name "SASpro"
