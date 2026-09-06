@@ -2,8 +2,8 @@ class Saspro < Formula
   include Language::Python::Virtualenv
   desc "SetiAstro Suite Pro astrophotography image processing platform"
   homepage "https://setiastro.com"
-  url "https://github.com/setiastro/setiastrosuitepro/archive/refs/tags/V1.21.1.tar.gz"
-  sha256 "d0cbd4ed20a4706164b98fcb0a03d6abb945d041e2ca2960c1a80dbacb0819d4"
+  url "https://github.com/setiastro/setiastrosuitepro/archive/refs/tags/V1.21.2.tar.gz"
+  sha256 "a4a0017ef3f76f854d527794a97f2a052783fcf445250366df56a0dad67bd9cd"
   license "GPL-3.0-only"
 
   depends_on "python@3.12" => :recommended
