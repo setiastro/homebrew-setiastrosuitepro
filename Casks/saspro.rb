@@ -3,12 +3,12 @@ cask "saspro" do
 
   on_arm do
     url "https://github.com/setiastro/setiastrosuitepro/releases/download/V#{version}/SetiAstroSuitePro_AppleSilicon.dmg"
-    sha256 "f80c2510fc30a1cd44d9493566c65574303ac164c854bc4fa4d0423c6ab797c7"  # paste full hash here
+    sha256 "5d83ba3b40cb2d895079626c6d34fc581832c4541765a994b4bd8d62f9b6d90f"  # paste full hash here
   end
 
   on_intel do
     url "https://github.com/setiastro/setiastrosuitepro/releases/download/V#{version}/SetiAstroSuitePro_macOS_Intel.dmg"
-    sha256 "1fa19964d60afcd930adfb7b18bb494e26be77f4c552c29ef9b51c3c66fb974f"  # paste full hash here
+    sha256 "4cc449f4b2e486fc3d7bf91c2391cafce0d747d19e6a2a8a2eba2dfe7dc83eac"  # paste full hash here
   end
 
   name "SASpro"
